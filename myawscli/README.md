@@ -1,13 +1,14 @@
 README.md
 
 1. clone this repo
-	* git clone ...blah/blah/blah.git
+	* git clone https://github.com/cjrollo/acm.git
 2. (optionally) generate key file
 	* ec2 create-security-group --group-name devenv-sg --description "security group for development environment"
 	* ec2 authorize-security-group-ingress --group-name devenv-sg --protocol tcp --port 22 --cidr 146.197.246.76/32
 	* ec2 create-key-pair --key-name devenv-key --query 'KeyMaterial' --output text > ~/.aws/devenv-key.pem
 3. (optionally) copy AWS credentials/config to ~/.aws
 4. build the container
+	* cd myawscli
 	* docker build --rm -t rollo/myawscli .
 5. create an alias and source it
 	* echo 'alias dckr='docker run --volume ~/.aws:/root/.aws rollo/myawscli'' >> ~/.bash_profile
