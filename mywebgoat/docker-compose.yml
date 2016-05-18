@@ -4,30 +4,46 @@ services:
   web:
     build: .
 # Uncomment this to allow the HOST to connect.
-#    ports:
-#      - "8080:8080"
+    ports:
+      - "8080:8080"
 # Enables intra-container communications.
     expose:
       - "8080"
-#  proxy:
-#  	image: rollo/myzap
+
+  proxy:
+    image: rollo/myzap
 #    image: owasp/zap2docker-stable
-#    volumes:
-#    - /tmp/.X11-unix:/tmp/.X11-unix:ro
-#    privileged: true
-#    environment:
-#    - DISPLAY=$DISPLAY
-#    depends_on:
-#      - web
+
+# Option 1: via embedded VNC Server
+#docker run -u zap -p 5900:5900 -p 8080:8080 -i owasp/zap2docker-stable x11vnc --forever --usepw --create
+#    user: zap
+#    ports:
+#      - "5900:5900"
+#      - "8080:8080"
+#    expose:
+#      - "5900"
+#      - "8080"
+#    command: x11vnc --forever --usepw --create
+#    command: x11vnc --forever --nopw --create
+# Option 2: via web UI
+#docker run -p 8090:8090 -i owasp/zap2docker-stable zap.sh -daemon -port 8090 -host 0.0.0.0
+    ports:
+      - "8090:8090"
+    expose:
+      - "8090"
+    command: zap.sh -daemon -port 8090 -host 0.0.0.0
+
   client:
     image: rollo/myfirefox
+    user: developer
     volumes:
     - /tmp/.X11-unix:/tmp/.X11-unix:ro
     privileged: true
     environment:
-    - DISPLAY=$DISPLAY
-    depends_on:
-      - web
+#    - DISPLAY=$DISPLAY
+    - DISPLAY=192.168.99.1:0
+#    depends_on:
+#      - web
 
 # Wait until the 'web' container is running
 #    command:
