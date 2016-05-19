@@ -1,11 +1,23 @@
 FROM ubuntu:14.04
 MAINTAINER rollo (rollo.nike@gmail.com)
 
-RUN apt-get update -qy
-RUN apt-get install -qy git
-RUN mkdir /tmp/fbctf
-WORKDIR /tmp/fbctf
+RUN apt-get update -qy \
+  && apt-get install -qy git curl software-properties-common \
+  && rm -rf /var/lib/apt/lists/*
 RUN git clone https://github.com/facebook/fbctf
-WORKDIR /tmp/fbctf/fbctf
-RUN ./extra/provision.sh dev 'pwd'
+WORKDIR fbctf
+
+##Fix some system problems
+RUN touch /etc/update-motd.d/51-cloudguest
+ADD ./extra/lib.sh.patched /fbctf/extra/lib.sh
+#RUN ./extra/provision.sh dev $PWD
+
+EXPOSE 80
+EXPOSE 443
 CMD /bin/bash
+#ENTRYPOINT ./extra/provision.sh dev $PWD
+
+## sudo apt-get install git
+## git clone https://github.com/facebook/fbctf
+## cd fbctf
+## ./extra/provision.sh dev $PWD
