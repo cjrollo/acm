@@ -14,8 +14,8 @@ ADD ./extra/lib.sh.patched /fbctf/extra/lib.sh
 
 EXPOSE 80
 EXPOSE 443
-CMD /bin/bash
-#ENTRYPOINT ./extra/provision.sh dev $PWD
+CMD echo "To startup, run this: ./extra/provision.sh dev \$PWD " \
+  && /bin/bash
 
 ## sudo apt-get install git
 ## git clone https://github.com/facebook/fbctf
