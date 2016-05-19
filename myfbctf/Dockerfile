@@ -1,9 +1,7 @@
 FROM ubuntu:14.04
 MAINTAINER rollo (rollo.nike@gmail.com)
 
-RUN apt-get update -qy \
-  && apt-get install -qy git curl software-properties-common \
-  && rm -rf /var/lib/apt/lists/*
+RUN apt-get update -qy && apt-get install -qy git curl software-properties-common
 RUN git clone https://github.com/facebook/fbctf
 WORKDIR fbctf
 
@@ -21,3 +19,6 @@ CMD echo "To startup, run this: ./extra/provision.sh dev \$PWD " \
 ## git clone https://github.com/facebook/fbctf
 ## cd fbctf
 ## ./extra/provision.sh dev $PWD
+
+## clean up installers
+# RUN rm -rf /var/lib/apt/lists/*
