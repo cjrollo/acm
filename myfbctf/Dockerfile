@@ -1,7 +1,8 @@
 FROM ubuntu:14.04
 MAINTAINER rollo (rollo.nike@gmail.com)
 
-RUN apt-get update -qy && apt-get install -qy git curl software-properties-common
+RUN apt-get update -y
+RUN apt-get install -y git curl software-properties-common
 RUN git clone https://github.com/facebook/fbctf
 WORKDIR fbctf
 

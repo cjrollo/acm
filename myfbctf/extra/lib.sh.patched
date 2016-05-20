@@ -44,7 +44,7 @@ function install_mysql() {
   echo "mysql-server-5.5 mysql-server/root_password_again password $__pwd" | sudo debconf-set-selections
   package mysql-server
 
-  # Restart mysql-server
+  # Restart mysql
   sudo service mysql restart
 }
 
