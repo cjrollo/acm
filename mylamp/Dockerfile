@@ -1,5 +1,3 @@
-
-
 FROM ubuntu:trusty
 MAINTAINER Christopher Rollo (rollo.nike@gmail.com)
 
@@ -29,7 +27,7 @@ RUN chmod 755 /*.sh
 ADD apache_default /etc/apache2/sites-available/000-default.conf
 RUN a2enmod rewrite
 
-# Configure /app folder with sample app
+# Configure /app folder with my sample app
 RUN git clone https://github.com/cjrollo/php.git /app
 RUN mkdir -p /app && rm -fr /var/www/html && ln -s /app /var/www/html
 
