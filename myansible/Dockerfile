@@ -1,5 +1,5 @@
-FROM ansible/ansible:centos7
-MAINTAINER rollo
-RUN yum install -y ansible
+FROM williamyeh/ansible:alpine3
 
-CMD /bin/bash
+MAINTAINER rollo
+
+CMD ["ansible-playbook","--version"]
