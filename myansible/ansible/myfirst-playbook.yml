@@ -1,0 +1,15 @@
+- hosts: all
+  user: root
+  sudo: no
+  tasks:
+  - name: install apache2
+    action: apt pkg=apache2 state=latest
+    notify:
+    - start apache2
+    - name: Make sure index.html is present for the default virtual host
+      action: copy src=files/index.html dest=/var/www/index.html
+    - name: Make sure index.html is owned by www-data
+      action: file path=/var/www/index.html owner=www-data group=www-data
+  handlers:
+  - name: start apache2
+    action: service name=apache2 state=started

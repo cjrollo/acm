@@ -1,0 +1,10 @@
+version: '2'
+services:
+  controller:
+    image: rollo/myansible:alpine
+#  build: .
+#    depends_on:
+#    - node1
+    command: /bin/ash
+#  node1:
+#    image: ubuntu:latest
