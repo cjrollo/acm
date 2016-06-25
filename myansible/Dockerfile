@@ -1,5 +1,7 @@
-FROM ansible/ansible:centos7
+FROM alpine:3.4
 MAINTAINER rollo
-RUN yum install -y ansible
-
-CMD /bin/bash
+RUN apk add --no-cache ansible
+RUN mkdir /etc/ansible
+COPY ansible/hosts /etc/ansible
+WORKDIR /home
+CMD /bin/ash
