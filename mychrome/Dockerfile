@@ -65,4 +65,3 @@ WORKDIR $HOME
 # Autorun chrome
 ENTRYPOINT [ "google-chrome" ]
 CMD [ "--user-data-dir=/data" ]
-#CMD [ "--user-data-dir=/data --no-sandbox" ]  # Yes! turning off sandbox is a risk. Fix the kernel!
