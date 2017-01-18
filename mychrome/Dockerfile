@@ -23,10 +23,8 @@
 FROM ubuntu:17.04
 MAINTAINER rollo # that's me! ;-)
 
+# Uncomment this and in the install section if you want this plugin
 #ADD https://dl.google.com/linux/direct/google-talkplugin_current_amd64.deb /src/google-talkplugin_current_amd64.deb
-
-#RUN apk update && apk add chromium
-#RUN apt-get update && apt-get install -y chromium-browser
 
 # Install Chrome
 RUN apt-get update && apt-get install -y \
