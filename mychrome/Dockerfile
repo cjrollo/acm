@@ -54,7 +54,7 @@ RUN groupadd -r dev && useradd -m -r -g dev dev
 
 # Switch to the userspace
 USER dev
-#ENV HOME /home/dev
+ENV HOME /home/dev
 WORKDIR $HOME
 
 # Install saved configuration
