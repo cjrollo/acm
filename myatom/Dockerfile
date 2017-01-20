@@ -60,5 +60,4 @@ ENV HOME /home/dev
 WORKDIR $HOME
 
 # Autorun Atom
-ENTRYPOINT [ "atom" ]
-CMD [ "-f" ]
+ENTRYPOINT [ "atom", "-f" ]
