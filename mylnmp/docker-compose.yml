@@ -1,0 +1,17 @@
+admin:
+#  image: rollo/mylnmpadmin
+  build: ./admin/
+#  command:
+#    - uname -a
+db:
+#  image: rollo/mylnmpdb
+  build: ./db/
+#  command:
+#    - uname -a
+web:
+#  image: rollo/mylnmpweb
+  build: ./web/
+  ports:
+    - 80:80
+#  command:
+#    - uname -a

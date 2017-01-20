@@ -1,0 +1,41 @@
+
+db:
+#  image: rollo/mymysql
+  image: mysql:5.7.12
+# docker run -e MYSQL_ROOT_PASSWORD=secret -e MYSQL_DATABASE=demo -e MYSQL_USER=demouser -e MYSQL_PASSWORD=demopassword -d mysql:5.7.12
+  environment:
+    - MYSQL_ROOT_PASSWORD=root
+    - MYSQL_DATABASE=demo
+    - MYSQL_USER=demouser
+    - MYSQL_PASSWORD=demopassword
+
+  # $ docker run -it --link mylamp_db_1:mysql --rm mysql sh -c 'exec mysql -h"$MYSQL_PORT_3306_TCP_ADDR" -P"$MYSQL_PORT_3306_TCP_PORT" -uroot -proot'
+#  build: ./db
+#  links:
+#    - web
+  ports:
+    - 3306:3306
+
+#web:
+#  image: rollo/myapache
+#  image:
+  # $ docker run --name some-app --link some-mysql:mysql -d application-that-uses-mysql
+#  build: ./web
+#  links:
+#    - db
+#  ports:
+#    - 80:80
+#  environment:
+#    MYSQL_USERNAME: root
+#    MYSQL_ROOT_PASSWORD: root
+
+#admin:
+#  image: rollo/myphpadmin
+#  build: ./admin
+#  links:
+#    - db
+#  ports:
+#    - 80:80
+#  environment:
+#    MYSQL_USERNAME: root
+#    MYSQL_ROOT_PASSWORD: root

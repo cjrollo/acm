@@ -25,3 +25,8 @@ VOLUME  ["/etc/mysql", "/var/lib/mysql" ]
 
 EXPOSE 3306
 CMD ["/run.sh"]
+
+
+#Install MySQL Server. Be careful to note what password is used for MySQL because Mutillidae must know what is this password.
+	sudo apt-get install mysql-server libapache2-mod-auth-mysql php5-mysql
+	sudo mysql_install_db
