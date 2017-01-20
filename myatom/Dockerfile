@@ -1,54 +1,59 @@
 # Run Atom in a container
 #
-# Building the image
-# Clone this repository, change into the source directory and run:
-#   docker build . -t atom
-# Running Atom
-#    docker run -d -v /tmp/.X11-unix/:/tmp/.X11-unix/ \
-#              -v /dev/shm:/dev/shm \
-#              -v ${HOME}/.atom:/home/atom/.atom \
-#              -e DISPLAY \
-#              jamesnetherton/docker-atom-editor
-# Note that -v /dev/shm:/dev/shm may be optional and can be replaced by --shm-size="<number><unit>".
+#	# Download atom Dockerfile
+#	wget https://raw.githubusercontent.com/jessfraz/dockerfiles/master/atom/Dockerfile
 #
-# inspired by James Netherton
-#   https://github.com/jamesnetherton/docker-atom-editor/blob/master/Dockerfile
+#	# Build atom image
+#	docker build -t atom .
+#
+#	docker run -v /tmp/.X11-unix:/tmp/.X11-unix \
+#		-e DISPLAY=unix$DISPLAY atom
+#
+# inspired by Jessie Frazelle <jess@linux.com>
+#   https://github.com/jessfraz/dockerfiles/blob/master/atom/Dockerfile
 #
 # Usage: docker run --rm -it --net host --cpuset-cpus 0 --memory 512mb -e DISPLAY=192.168.99.1:0 --name atom rollo/myatom:<OS>
 #   this construct requires a local X server and socket to host it (hint: socat ...)
 
 # Base docker image
-FROM ubuntu:latest
+FROM debian:stretch
 MAINTAINER rollo
 
 # Install Atom
-ENV ATOM_VERSION v1.13.0
+# Install dependencies
+RUN apt-get update && apt-get install -y \
+	git \
+	gconf2 \
+	gconf-service \
+	gvfs-bin \
+	libasound2 \
+	libcap2 \
+	libgconf-2-4 \
+	libgnome-keyring-dev \
+	libgtk2.0-0 \
+	libnotify4 \
+	libnss3 \
+	libxkbfile1 \
+	libxss1 \
+	libxtst6 \
+	xdg-utils \
+	--no-install-recommends \
+	&& rm -rf /var/lib/apt/lists/*
 
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
-      ca-certificates \
-      curl \
-      fakeroot \
-      gconf2 \
-      gconf-service \
-      git \
-      gvfs-bin \
-      libasound2 \
-      libcap2 \
-      libgconf-2-4 \
-      libgtk2.0-0 \
-      libnotify4 \
-      libnss3 \
-      libxkbfile1 \
-      libxss1 \
-      libxtst6 \
-      python \
-      xdg-utils && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/* && \
-    curl -L https://github.com/atom/atom/releases/download/${ATOM_VERSION}/atom-amd64.deb > /tmp/atom.deb && \
-    dpkg -i /tmp/atom.deb && \
-    rm -f /tmp/atom.deb
+ENV ATOM_VERSION 1.13.0
+
+# download the source
+RUN buildDeps=' \
+		ca-certificates \
+		curl \
+	' \
+	&& set -x \
+	&& apt-get update && apt-get install -y $buildDeps --no-install-recommends \
+	&& rm -rf /var/lib/apt/lists/* \
+	&& curl -sSL https://github.com/atom/atom/releases/download/v${ATOM_VERSION}/atom-amd64.deb -o /tmp/atom-amd64.deb \
+	&& dpkg -i /tmp/atom-amd64.deb \
+	&& rm -rf /tmp/*.deb \
+	&& apt-get purge -y --auto-remove $buildDeps
 
 # CREATE USERSPACE
 # Create a runtime user
