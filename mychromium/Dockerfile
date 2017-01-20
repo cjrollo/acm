@@ -16,18 +16,20 @@
 # inspired by Jessie Frazelle <jess@linux.com>
 #   https://github.com/jessfraz/dockerfiles/blob/master/chrome/stable/Dockerfile
 #
-# Usage: docker run --rm -it --net host --cpuset-cpus 0 --memory 512mb -e DISPLAY=192.168.99.1:0 --name chrome rollo/mychrome
+# Usage: docker run --rm -it --net host --cpuset-cpus 0 --memory 512mb -e DISPLAY=192.168.99.1:0 --name chrome rollo/mychromium
 #   this construct requires a local X server and socket to host it (hint: socat ...)
 
 # Base docker image
+#FROM alpine
 #FROM alpine:edge
-FROM alpine
+FROM alpine:latest
+
 MAINTAINER rollo # that's me! ;-)
 
 # Install chromium
 RUN apk --update --no-cache add \
   chromium \
-  libexif-dev \
+  libexif \
   udev \
   mesa-gl \
   mesa-dri-swrast
