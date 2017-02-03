@@ -22,6 +22,8 @@ MAINTAINER rollo
 # Install Atom
 # Install dependencies
 RUN apt-get update && apt-get install -y \
+	ca-certificates \
+	curl \
 	git \
 	gconf2 \
 	gconf-service \
