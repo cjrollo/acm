@@ -43,6 +43,7 @@ echo "DONE Installing Chrome."
 #   based on: https://github.com/jessfraz/dockerfiles/blob/f9b1205a5f973149613ba2210e3fdb23d145d84d/firefox/Dockerfile
 install-ff () {
   echo "Installing Firefox..."
+  echo "This is a TODO"
 #	dirmngr \
 #	gnupg \
 #  libfontconfig1 \
