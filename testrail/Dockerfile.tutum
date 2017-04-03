@@ -1,0 +1,36 @@
+# Outcome: Run TestRail in a container
+# Inspiration: janes - https://github.com/hxer
+# Usage: docker run --rm -it --name testrail rollo/testrail:<OS>
+#
+# Base docker image
+#FROM alpine:3.4
+FROM tutum/lamp
+MAINTAINER rollo
+
+# Update sources
+RUN apt-get update -y
+
+# install required tools & php extensions
+RUN apt-get install -y \
+    php5-curl \
+    wget
+#    php5-json \
+#    php5-mbstring \
+#    php5-mysql \
+
+# install ioncube
+RUN wget https://downloads.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.tar.gz && \
+ tar xvf ioncube_loaders_lin_x86-64.tar.gz -C /usr/local/lib && \
+ rm ioncube_loaders*
+
+# install TestRail
+
+
+#WORKDIR /www
+
+EXPOSE 80
+EXPOSE 3306
+
+#VOLUME ["/www","/var/lib/mysql","/etc/mysql/"]
+#ENTRYPOINT ["/start.sh"]
+CMD ["/run.sh"]

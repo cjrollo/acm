@@ -1,0 +1,62 @@
+# Outcome: Run TestRail in a container
+# Inspiration: janes - https://github.com/hxer
+# Usage: docker run --rm -it --name testrail rollo/testrail:<OS>
+#
+# Base docker image
+#FROM alpine:3.4
+FROM tutum/lamp
+MAINTAINER rollo
+
+# Update sources
+RUN apt-get update -y
+
+# install required tools & php extensions
+RUN apt-get install -y \
+    php5-curl \
+    unzip \
+    wget
+#    php5-json \
+#    php5-mbstring \
+#    php5-mysql \
+
+# install ioncube
+#RUN wget https://downloads.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.tar.gz && \
+# tar xvf ioncube_loaders_lin_x86-64.tar.gz -C /usr/local/lib && \
+# rm ioncube_loaders*
+#RUN echo "zend_extension=/usr/local/lib/ioncube/ioncube_loader_lin_5.5.so" >> /etc/php5/cli/php.ini
+
+RUN wget https://downloads.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.tar.gz && \
+  tar xvf ioncube_loaders_lin_x86-64.tar.gz -C /usr/lib/php5/20121212 &&
+  rm ioncube_loaders*
+
+RUN echo "zend_extension = /usr/lib/php5/20121212/ioncube/ioncube_loader_lin_5.5.so" > /etc/php5/apache2/conf.d/00-ioncube.ini
+RUN service apache2 restart
+
+# prepare system for TestRail
+# Creating the empty TestRail database
+#$ mysql -u root -p
+#> CREATE DATABASE testrail DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+#> CREATE USER 'testrail'@'localhost' IDENTIFIED BY 'newpassword';
+#> GRANT ALL ON testrail.* TO 'testrail'@'localhost';
+
+# install TestRail
+# get installer, unzip to web root
+RUN wget http://www.gurock.com/downloads/testrail/testrail-latest-ion53.zip && \
+  unzip testrail-latest-ion53.zip -d /var/www/html && \
+  rm testrail-latest-ion53.zip
+
+RUN mkdir /home/testrail && chmod 777 $_
+RUN mkdir /home/testrail/attachments && chmod 777 $_
+RUN mkdir /home/testrail/logs && chmod 777 $_
+RUN mkdir /home/testrail/reports && chmod 777 $_
+
+# launch installer    open http://localhost/testrail
+
+#WORKDIR /www
+
+EXPOSE 80
+EXPOSE 3306
+
+#VOLUME ["/www","/var/lib/mysql","/etc/mysql/"]
+#ENTRYPOINT ["/start.sh"]
+CMD ["/run.sh"]
