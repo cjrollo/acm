@@ -1,0 +1,4 @@
+{ "dependencies" :
+  { "jasmine" : ">=2.5.2"
+  }
+}
