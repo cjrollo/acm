@@ -26,6 +26,7 @@ Git:
 Artifactory:  
         https://www.jfrog.com/artifactory/  
 	https://www.jfrog.com/confluence/display/RTF/Installing+with+Docker  
+	https://github.com/JFrogDev/artifactory-docker-examples  
 	https://hub.docker.com/r/mattgruter/artifactory/  
 
 Protex:  
