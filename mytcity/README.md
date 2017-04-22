@@ -19,16 +19,17 @@ _Who?_
 Here is a list of the components included, with some reference links…
 
 Git:  
-				https://git-scm.com/  
-				https://store.docker.com/images/gitlab-enterprise-edition?tab=description  
-				https://store.docker.com/images/gitlab-community-edition?tab=description  
+	https://git-scm.com/  
+	https://store.docker.com/images/gitlab-enterprise-edition?tab=description  
+	https://store.docker.com/images/gitlab-community-edition?tab=description  
 
 Artifactory:  
         https://www.jfrog.com/artifactory/  
-				https://hub.docker.com/r/mattgruter/artifactory/  
+	https://www.jfrog.com/confluence/display/RTF/Installing+with+Docker  
+	https://hub.docker.com/r/mattgruter/artifactory/  
 
 Protex:  
-    https://www.blackducksoftware.com/products/protex  
+	https://www.blackducksoftware.com/products/protex  
 	https://blackducksoftware.atlassian.net/wiki/display/INTDOCS/Home  
 	https://github.com/blackducksoftware/hub-artifactory  
 	https://github.com/blackducksoftware/hub-maven-plugin  
@@ -36,27 +37,27 @@ Protex:
 	https://github.com/blackducksoftware/hub-teamcity  
 	
 Klocwork:  
-    http://www.klocwork.com/  
-    https://support.roguewave.com/documentation/klocwork/en/current/  
-    https://support.roguewave.com/documentation/klocwork/en/current/installingtheklocworkserverpackageonunix/#concept474  
+	http://www.klocwork.com/  
+	https://support.roguewave.com/documentation/klocwork/en/current/  
+	https://support.roguewave.com/documentation/klocwork/en/current/installingtheklocworkserverpackageonunix/#concept474  
 
 TeamCity:  
-    https://www.jetbrains.com/teamcity/  
-		https://hub.docker.com/r/jetbrains/teamcity-server/  
-		https://hub.docker.com/r/jetbrains/teamcity-agent/  
-		https://hub.docker.com/r/jetbrains/teamcity-minimal-agent/  
+	https://www.jetbrains.com/teamcity/  
+	https://hub.docker.com/r/jetbrains/teamcity-server/  
+	https://hub.docker.com/r/jetbrains/teamcity-agent/  
+	https://hub.docker.com/r/jetbrains/teamcity-minimal-agent/  
 
 Jenkins:  
-    https://jenkins.io/  
-		https://store.docker.com/images/jenkins?tab=description  
+	https://jenkins.io/  
+	https://store.docker.com/images/jenkins?tab=description  
 
 Robot Framework:  
-    http://robotframework.org/  
-    https://hub.docker.com/r/manycoding/robotframework/  
+	http://robotframework.org/  
+	https://hub.docker.com/r/manycoding/robotframework/  
 
 Golang:  
-    https://golang.org/  
-		https://store.docker.com/images/golang?tab=description  
+	https://golang.org/  
+	https://store.docker.com/images/golang?tab=description  
 
 Docker:  
-    https://store.docker.com/  
+	https://store.docker.com/  
