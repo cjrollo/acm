@@ -29,7 +29,12 @@ Artifactory:
 
 Protex:  
     https://www.blackducksoftware.com/products/protex  
-
+	https://blackducksoftware.atlassian.net/wiki/display/INTDOCS/Home
+	https://github.com/blackducksoftware/hub-artifactory
+	https://github.com/blackducksoftware/hub-maven-plugin
+	https://github.com/blackducksoftware/hub-jenkins
+	https://github.com/blackducksoftware/hub-teamcity
+	
 Klocwork:  
     http://www.klocwork.com/  
 
