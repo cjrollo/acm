@@ -1,0 +1,40 @@
+version: '2'
+services:
+  teamcity:
+    restart: unless-stopped
+    image: sashgorokhov/teamcity
+    ports:
+      - "0.0.0.0:8111:8111"
+    volumes:
+      - "/mnt/teamcity:/mnt/teamcity"
+  teamcity_agent:
+    restart: unless-stopped
+#    image: sashgorokhov/teamcity-agent
+    image: rollo/docker-teamcity-agent
+    links:
+      - "teamcity:teamcity"
+    environment:
+      SERVER_URL: teamcity:8111
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+#      - "/usr/local/bin/docker-compose:/bin/docker-compose"
+
+#docker run --name teamcity-agent -p 9090:9090
+#-e SERVER_URL=http://example.com -d sashgorokhov/teamcity-agent
+#  artifactory:
+#    restart: unless-stopped
+#    image: docker.bintray.io/jfrog/artifactory-pro:latest
+#    links:
+#      - "teamcity:teamcity"
+#    ports:
+#      - "0.0.0.0:8081:8081"
+#    volumes:
+#      - "/var/run/docker.sock:/var/run/docker.sock"
+
+
+#This starts the artifactory server:
+#  docker run -d --name artifactory -p 8081:8081 docker.bintray.io/jfrog/artifactory-pro
+
+#This starts the teamcity cluster:
+# cd /Users/rollo/projects/docker/teamcity
+# docker-compose -f sample-compose.yml up
